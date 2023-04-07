@@ -1,0 +1,11 @@
+
+    <div class="player" [ngClass]="{'player--active': currentPlayer.symbol === 'X'}">
+      <span class="player__name">Player {{markName}}</span>
+      <img src="assets/svg/cross-inkscape.svg" class="player__symbol">
+    </div>
+    <div class="player player--second" [ngClass]="{'player--active': currentPlayer.symbol === 'O'}">
+      <span class="player__name">Player {{circleName}}</span>
+      <img src="assets/svg/circle-inkscape.svg" class="player__symbol">
+    </div>
+
+

@@ -1,0 +1,13 @@
+
+
+<div class="board" [ngStyle]="boardDimensions()">
+  <ng-container *ngFor="let row of board; let i = index">
+    <ng-container *ngFor="let col of row; let j = index; trackBy: tilePosition">
+      <div class="board__tile" [ngSwitch]="board[i][j]" (click)="putSymbol(i,j)" >
+        <cross-svg *ngSwitchCase="'X'"></cross-svg>
+        <circle-svg *ngSwitchCase="'O'"></circle-svg>
+        <div *ngSwitchDefault></div>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>

@@ -1,0 +1,31 @@
+
+
+.board {
+  display: grid;
+  justify-content: center;
+  width: fit-content;
+  background-color: var(--board-tint);
+  border: 0.9em solid var(--board-tint);
+  border-radius: 0.6em;
+}
+
+.board__tile {
+  --max-tile-size: 160px;
+  border: 2px solid var(--board-tint);
+  border-radius: 0.3em;
+  background-color: white;
+  min-width: 3em;
+  min-height: 3em;
+  width: calc(var(--max-tile-size) - (var(--tile-size-coeff,0) * 1.2em));
+  height: calc(var(--max-tile-size) - (var(--tile-size-coeff,0) * 1.2em));
+  max-width: var(--max-tile-size);
+  max-height: var(--max-tile-size);
+}
+
+@media screen and (max-width: 500px){
+  .board__tile {
+    width: calc(var(--max-tile-size) - (var(--tile-size-coeff,0) * 1.6em));
+    height: calc(var(--max-tile-size) - (var(--tile-size-coeff,0) * 1.6em));
+  }
+}
+

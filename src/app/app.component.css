@@ -1,0 +1,113 @@
+
+.page {
+  font-family: NotoSansLao;
+  margin: 0 auto;
+  background-color: var(--amber);
+  min-height: 100vh;
+}
+
+.page__top {
+  background-color: var(--gunmetal);
+  padding: 1.5em 0;
+  z-index: 1000;
+}
+
+.page__title {
+  text-align: center;
+  color: var(--amber);
+  font-family: RussoOne;
+  margin-top: 0;
+  text-transform: uppercase;
+  font-weight: 100;
+  font-size: 2.5em;
+  letter-spacing: 0.2em;
+  text-decoration: underline;
+}
+.page__buttons {
+  margin: 0 auto;
+  width: fit-content;
+  display: flex;
+  flex-wrap: wrap;
+  justify-items: center;
+  justify-content: center;
+  padding: 0 1em;
+  gap: 1em;
+}
+.page__btn {
+  border: 2px solid var(--secondary-tint);
+  background-color: white;
+  box-shadow: 0 0 0 2px white;
+  border-radius: 0.6em;
+  padding: 0.6em 1.2em;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+.button__icon {
+  width: 2em;
+  height: 2em;
+  margin-right: 0.5em;
+}
+.page__btn:hover {
+  background-color: var(--secondary-tint);
+  color: white;
+}
+
+.game {
+  display: flex;
+  gap: 0.75em;
+  justify-content: center;
+  align-items: flex-start;
+  width: 80vw;
+  padding: 2em;
+  margin: 0 auto;
+}
+
+.board-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.game__status {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 1em;
+  z-index: 999;
+}
+
+
+.status__modal {
+  display: flex;
+  gap: 1em;
+  margin: 0 auto;
+  width: fit-content;
+  padding: 0.6em 2em;
+  background-color: var(--gunmetal);
+  font-size: 1.2em;
+  color: white;
+  border-radius: 0.6em;
+}
+.status__modal--win {
+  background-color: var(--success);
+}
+.status__message {
+  margin: 0;
+  text-align: center;
+}
+
+.controls--hidden {
+  visibility: hidden;
+}
+
+@media screen and (max-width: 800px){
+  .game {
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 500px){
+  .page {
+    width: unset;
+  }
+}

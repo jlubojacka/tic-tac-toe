@@ -1,0 +1,45 @@
+
+/* ensure Angular does not wrap contents of payers component inside <app-players> tag */
+:host {
+  display: contents;
+}
+
+.player {
+  display: flex;
+  border-radius: 0.6em;
+  align-items: center;
+  padding: 0.6em 1.2em;
+  background-color: white;
+  transition: scale 300ms ease-in;
+  min-height: 4em;
+}
+
+.player--active {
+  background-color: var(--secondary-tint);
+  color: white;
+}
+
+.player--second {
+  order: 1;
+}
+
+.player__symbol {
+  width: 2em;
+  height: 2em;
+}
+.player--active .player__symbol {
+  background-color: white;
+  border-radius: 0.6em;
+}
+
+.player__name {
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-right: 0.5em;
+}
+
+@media screen and (max-width: 800px){
+  .player--second {
+    order: 0;
+  }
+}
