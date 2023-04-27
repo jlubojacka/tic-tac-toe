@@ -1,11 +1,21 @@
 
     <div class="player" [ngClass]="{'player--active': currentPlayer.symbol === 'X'}">
-      <span class="player__name">Player {{markName}}</span>
-      <img src="assets/svg/cross-inkscape.svg" class="player__symbol">
+      <div class="player__info">
+        <span class="player__name">Player {{markName}}</span>
+        <img src="assets/svg/cross-inkscape.svg" class="player__symbol">
+      </div>
     </div>
     <div class="player player--second" [ngClass]="{'player--active': currentPlayer.symbol === 'O'}">
-      <span class="player__name">Player {{circleName}}</span>
-      <img src="assets/svg/circle-inkscape.svg" class="player__symbol">
+      <div class="player__info">
+        <span class="player__name">Player {{circleName}}</span>
+        <img src="assets/svg/circle-inkscape.svg" class="player__symbol">
+      </div>
+      <div class="player__switch">
+          <label class="switch__label">
+            <input class="switch__input" type="checkbox" name="playerType" id="playerType" [(ngModel)]="circleComputerType" (change)="checkPlayerType($event)">
+            <label class="switch__toggle" for="playerType" data-off="Human" data-on="Computer"></label>
+          </label>
+      </div>
     </div>
 
 

@@ -9,16 +9,8 @@ import {GameService} from "../game-service.service";
   styleUrls: ['./controls.component.css']
 })
 export class ControlsComponent {
-  @Output() closeModal: EventEmitter<any> = new EventEmitter();
-  @ViewChild('dialog') dialog: any = null;
 
-  @HostListener('click', ['$event'])
-  onDialogClick(event: any) {
-    console.log(event);
-    if (event.target.nodeName === "DIALOG"){
-      this.dialog.nativeElement.close();  //close when user clicks outside of controls modal
-    }
-  }
+  @ViewChild('modal') modal: any = undefined;
 
   dimensionValidators = [Validators.required, Validators.min(this.gameService.boardMin), Validators.max(this.gameService.boardMax)];
   boardForm: FormGroup = this.fb.group({
@@ -29,7 +21,6 @@ export class ControlsComponent {
 
 
   constructor(private fb: FormBuilder, private gameService: GameService){}
-
 
   get width(){
     return this.boardForm.controls["width"];
@@ -57,16 +48,20 @@ export class ControlsComponent {
       }
       return `Line count value must be between ${this.minimum} and ${this.maximum} inclusive.`
     }
-
   }
 
-  show(){
-    this.dialog.nativeElement.showModal();
+  showModal(){
+    this.modal?.open();
   }
 
   submit(){
     if (this.width.value && this.height.value && this.lineCount.value) {
       this.gameService.changeBoardDimensions(this.width.value, this.height.value, this.lineCount.value);
+      this.modal?.close();
     }
+  }
+
+  closeModal(){
+    this.modal?.close();
   }
 }

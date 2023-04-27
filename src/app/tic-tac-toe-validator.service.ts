@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {TicTacToeValidator} from "./tic-tac-toe-validator";
+import {TicTacToeValidator, WinnerFound} from "./tic-tac-toe-validator";
 
 
 @Injectable({
@@ -26,4 +26,19 @@ export class TicTacToeValidatorService {
     }
     return null;
   }
+
+  testWinningMove(board: string[][]): boolean {
+    let findMatches = this.validator.createComputerMatchFunc();
+    try {
+      this.validator.checkRows(board, findMatches);
+      this.validator.checkColumns(board, findMatches);
+      this.validator.checkDiagonals(board, findMatches);
+    } catch (ex){
+      if (ex instanceof WinnerFound){
+        return true;
+      }
+    }
+    return false;
+  }
+
 }

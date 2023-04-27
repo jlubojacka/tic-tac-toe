@@ -10,7 +10,7 @@ import {trigger,transition,style,animate} from '@angular/animations';
     path.draw {
       stroke-dasharray: 1000;
       stroke-dashoffset: 1000;
-      animation: animateDash 2s linear forwards 1;
+      animation: animateDash 1500ms linear forwards 1;
     }
 
     @keyframes animateDash {

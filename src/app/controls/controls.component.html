@@ -1,55 +1,55 @@
-<!--<section class="board-controls-wrapper" (click)="closeThis()" (click)="clickInside($event)">-->
 
-<dialog #dialog class="board-controls" >
-    <h2 class="board-controls__title">Change board dimensions:</h2>
-    <form method="dialog" [formGroup]="boardForm" (ngSubmit)="submit()" class="board-controls__form">
+<app-modal #modal class="CONTROLS">
+    <ng-container header>
+      <h2 class="board-controls__title">Change board dimensions:</h2>
+    </ng-container>
+    <ng-container body>
+      <form [formGroup]="boardForm" (ngSubmit)="submit()" class="board-controls__form">
 
-      <ng-template #errorTempl let-control>
-        <p class="field__message" *ngIf="control.hasError('required')">This field is mandatory.</p>
-        <p class="field__message" *ngIf="control.hasError('min')">Minimum value is {{minimum}}.</p>
-      </ng-template>
+        <ng-template #errorTempl let-control>
+          <p class="field__message" *ngIf="control.hasError('required')">This field is mandatory.</p>
+          <p class="field__message" *ngIf="control.hasError('min')">Minimum value is {{minimum}}.</p>
+        </ng-template>
 
-      <div class="board-controls__fields">
-        <div class="field">
-          <label>
-            <span class="field__title">Board width: </span>
-            <input class="field__input" type="number" name="width" formControlName="width">
-          </label>
-          <div class="field__errors" *ngIf="width.errors">
-            <ng-template *ngTemplateOutlet="errorTempl; context: {$implicit: width}"></ng-template>
-            <p class="field__message" *ngIf="width.hasError('max')">Maximum value is {{maximum}}.</p>
+        <div class="board-controls__fields">
+          <div class="field">
+            <label>
+              <span class="field__title">Board width: </span>
+              <input class="field__input" type="number" name="width" formControlName="width">
+            </label>
+            <div class="field__errors" *ngIf="width.errors">
+              <ng-template *ngTemplateOutlet="errorTempl; context: {$implicit: width}"></ng-template>
+              <p class="field__message" *ngIf="width.hasError('max')">Maximum value is {{maximum}}.</p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label >
+              <span class="field__title">Board height: </span>
+              <input class="field__input" type="number" name="height" formControlName="height">
+            </label>
+            <div class="field__errors" *ngIf="height.errors">
+              <ng-template *ngTemplateOutlet="errorTempl; context: {$implicit: height}"></ng-template>
+              <p class="field__message" *ngIf="height.hasError('max')">Maximum value is {{maximum}}.</p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>
+              <span class="field__title">Line count: </span>
+              <input class="field__input" type="number" name="lineCount" formControlName="lineCount">
+            </label>
+            <div class="field__errors" *ngIf="lineCount.errors || boardForm.hasError('maxCount')">
+              <ng-template *ngTemplateOutlet="errorTempl; context: {$implicit: lineCount}"></ng-template>
+              <p class="field__message" *ngIf="boardForm.errors?.['maxCount']">{{lineCountErrorMessage()}}</p>
+            </div>
           </div>
         </div>
 
-        <div class="field">
-          <label >
-            <span class="field__title">Board height: </span>
-            <input class="field__input" type="number" name="height" formControlName="height">
-          </label>
-          <div class="field__errors" *ngIf="height.errors">
-            <ng-template *ngTemplateOutlet="errorTempl; context: {$implicit: height}"></ng-template>
-            <p class="field__message" *ngIf="height.hasError('max')">Maximum value is {{maximum}}.</p>
-          </div>
+        <div class="board-controls__buttons">
+          <button class="board-controls__btn submit-btn" type="submit" [disabled]="!boardForm.valid">Change</button>
+          <button class="board-controls__btn" type="button" (click)="closeModal()">Close</button>
         </div>
-
-        <div class="field">
-          <label>
-            <span class="field__title">Line count: </span>
-            <input class="field__input" type="number" name="lineCount" formControlName="lineCount">
-          </label>
-          <div class="field__errors" *ngIf="lineCount.errors || boardForm.hasError('maxCount')">
-            <ng-template *ngTemplateOutlet="errorTempl; context: {$implicit: lineCount}"></ng-template>
-            <p class="field__message" *ngIf="boardForm.errors?.['maxCount']">{{lineCountErrorMessage()}}</p>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <button class="board-controls__btn submit-btn" type="submit" [disabled]="!boardForm.valid">Change</button>
-        <button class="board-controls__btn" type="button" (click)="dialog.close()">Close</button>
-      </div>
-    </form>
-  </dialog>
-
-<!--</section>-->
-
+      </form>
+    </ng-container>
+</app-modal>

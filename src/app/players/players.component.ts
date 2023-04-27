@@ -20,4 +20,20 @@ export class PlayersComponent {
     return this.gameService.currentPlayer;
   }
 
+  get circleComputerType(){
+    return this.gameService.players["O"].type === 'computer';
+  }
+  set circleComputerType(isComputer: boolean){
+    let type = isComputer ? 'computer' : 'human';
+    this.gameService.players["O"].type = type;
+  }
+
+  checkPlayerType(event:any){
+    let checked = event.target.checked;
+    let currPlayer = this.gameService.currentPlayer;
+    if (checked && currPlayer.symbol === "O"){
+      this.gameService.playAsComputer();
+    }
+  }
+
 }

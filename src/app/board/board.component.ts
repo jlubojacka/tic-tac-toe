@@ -7,7 +7,7 @@ import {GameService} from "../game-service.service";
   styleUrls: ['./board.component.css']
 })
 export class BoardComponent {
-  constructor( private gameService: GameService){
+  constructor( public gameService: GameService){
 
   }
 
@@ -16,6 +16,9 @@ export class BoardComponent {
   }
 
   putSymbol(row:number, column:number){
+    if (this.gameService.currentPlayer.type === "computer"){
+      return
+    }
     this.gameService.putSymbol(row,column);
   }
 

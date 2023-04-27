@@ -3,6 +3,13 @@
 
 class MultipleWinnersError extends Error {
 }
+export class WinnerFound extends Error {
+  symbol: string;
+  constructor(symbol: string){
+    super(`Winner found - ${symbol}`);
+    this.symbol = symbol;
+  }
+}
 
 export class TicTacToeValidator {
   width = 0;
@@ -19,6 +26,7 @@ export class TicTacToeValidator {
     }
     this.width = board[0].length;
     this.height = board.length;
+
     // accept lineCount as input
     let minDimension = Math.min(this.width, this.height);
     if (lineCount && lineCount >= 3 && lineCount <= minDimension){
@@ -28,6 +36,11 @@ export class TicTacToeValidator {
     }
 
     this.findOccurrences(board);
+    //check symbols
+    let count = this.width * this.height;
+    if (this.occurrences["X"] + this.occurrences["O"] + this.occurrences[""] !== count){
+      return false;  // some unknown symbol is present in board
+    }
 
     let diff = this.occurrences["X"] - this.occurrences["O"];
     if (this.occurrences["X"] == 0 && this.occurrences["O"] == 1) {
@@ -64,7 +77,7 @@ export class TicTacToeValidator {
   }
 
   createMatchFunction() {
-    return (array: [], index: number, arr: []) => {
+    return (array: [], index: number) => {
 
       let string = array.map(s => (s === "" ? "_" : s)).join("");
       let match = string.match(this.pattern);
@@ -81,6 +94,17 @@ export class TicTacToeValidator {
         }
         let symbol = match[0][0];
         this.winners[symbol].push(index);
+      }
+    }
+  }
+
+  createComputerMatchFunc(){
+    return (array: [], index: number) => {
+      let string = array.map(s => (s === "" ? "_" : s)).join("");
+      let match = string.match(this.pattern);
+      if (match) {
+        let symbol = match[0][0];
+        throw new WinnerFound(symbol);
       }
     }
   }

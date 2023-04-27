@@ -3,7 +3,6 @@ import { GameService } from "./game-service.service";
 import {trigger, transition, style, animate} from '@angular/animations';
 
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -25,7 +24,6 @@ export class AppComponent {
   title = 'tic-tac-toe';
   currentState = this.gameService.currentState;
   stateEnum = this.gameService.state;
-  showModal: boolean = false;
 
   constructor(private gameService: GameService){}
 
@@ -43,13 +41,9 @@ export class AppComponent {
     return ""
   }
 
-  switchModal(){
-    console.log("SWITCH", this.showModal);
-    this.showModal = !this.showModal;
-  }
-
   resetGame(){
     this.gameService.reset();
   }
+
 }
 
